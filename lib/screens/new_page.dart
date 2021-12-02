@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:gmaj_test_app/screens/bienvenida.dart';
+import 'package:gmaj_test_app/widgets/box.dart';
+import 'package:random_color/random_color.dart';
 
 class NewPage extends StatefulWidget {
   NewPage({Key key}) : super(key: key);
@@ -11,11 +14,15 @@ class NewPage extends StatefulWidget {
 
 class _NewPageState extends State<NewPage> {
   int number = 0;
+  bool isOpen = true;
+  List imagenes = ['januca.jpg', 'januca2.jpg'];
+
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Row(
+      floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
@@ -28,6 +35,7 @@ class _NewPageState extends State<NewPage> {
               });
             },
           ),
+          SizedBox(height: 10),
           FloatingActionButton(
             child: Icon(Icons.remove),
             onPressed: () {
@@ -40,24 +48,45 @@ class _NewPageState extends State<NewPage> {
           ),
         ],
       ),
-      appBar: AppBar(
-        title: Text('Nueva Pantalla'),
-        centerTitle: true,
-        // backgroundColor: Colors.grey,
-      ),
-      backgroundColor: Colors.red,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        // mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'El numero es $number',
-            style: TextStyle(fontSize: 50),
-          ),
-          // Image.network(
-          //     'https://static.nationalgeographic.es/files/styles/image_3200/public/NW_SEO_SRT_025_HANUKKAH_espa~~~~~es~mux~~1.jpg?w=600&h=300'),
-          Image.asset('assets/januca2.jpg'),
-        ],
+      appBar: AppBar(),
+      // appBar: AppBar(
+      //   title: Text('Nueva Pantalla'),
+      //   centerTitle: true,
+      //   // backgroundColor: Colors.grey,
+      // ),
+      // backgroundColor: Colors.red,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Switch(
+              value: isOpen,
+              onChanged: (bool newValue) {
+                setState(() {
+                  isOpen = newValue;
+                });
+                print('el switcher es $newValue');
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Lista de colores'),
+            ),
+            ElevatedButton(
+              onPressed: isOpen
+                  ? () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Bienvenida(),
+                        ),
+                      );
+                    }
+                  : null,
+              child: Text('ir a la otra pagina'),
+            ),
+            Image.asset('assets/${imagenes[isOpen ? 0 : 1]}'),
+          ],
+        ),
       ),
     );
   }
