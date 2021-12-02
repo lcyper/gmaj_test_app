@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gmaj_test_app/screens/my_home_page.dart';
 import 'package:gmaj_test_app/screens/new_page.dart';
 
 void main() {
@@ -12,7 +11,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      color: Colors.red,
       home: NewPage(),
     );
   }
