@@ -76,7 +76,11 @@ class _NewPageState extends State<NewPage> {
               ElevatedButton(
                 onPressed: isOpen
                     ? () {
-                        Navigator.pushNamed(context, '/bienvenida');
+                        Navigator.pushNamed(
+                          context,
+                          '/bienvenida',
+                          arguments: 'Bienvenida otra vez',
+                        );
                         // Navigator.push(
                         //   context,
                         //   MaterialPageRoute(

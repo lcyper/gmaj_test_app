@@ -12,9 +12,11 @@ class Bienvenida extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String title = ModalRoute.of(context).settings.arguments as String;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bienvenida'),
+        title: Text(title),
         centerTitle: true,
         leading: Container(),
       ),
