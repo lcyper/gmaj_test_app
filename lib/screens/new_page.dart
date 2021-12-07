@@ -17,11 +17,10 @@ class _NewPageState extends State<NewPage> {
   bool isOpen = true;
   List imagenes = ['januca.jpg', 'januca2.jpg'];
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -48,7 +47,9 @@ class _NewPageState extends State<NewPage> {
           ),
         ],
       ),
-      appBar: AppBar(),
+      appBar: AppBar(
+          // backgroundColor: Colors.blue,
+          ),
       // appBar: AppBar(
       //   title: Text('Nueva Pantalla'),
       //   centerTitle: true,
@@ -56,36 +57,39 @@ class _NewPageState extends State<NewPage> {
       // ),
       // backgroundColor: Colors.red,
       body: SafeArea(
-        child: Column(
-          children: [
-            Switch(
-              value: isOpen,
-              onChanged: (bool newValue) {
-                setState(() {
-                  isOpen = newValue;
-                });
-                print('el switcher es $newValue');
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Lista de colores'),
-            ),
-            ElevatedButton(
-              onPressed: isOpen
-                  ? () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Bienvenida(),
-                        ),
-                      );
-                    }
-                  : null,
-              child: Text('ir a la otra pagina'),
-            ),
-            Image.asset('assets/${imagenes[isOpen ? 0 : 1]}'),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Switch(
+                value: isOpen,
+                onChanged: (bool newValue) {
+                  setState(() {
+                    isOpen = newValue;
+                  });
+                  print('el switcher es $newValue');
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Lista de colores'),
+              ),
+              ElevatedButton(
+                onPressed: isOpen
+                    ? () {
+                        Navigator.pushNamed(context, '/bienvenida');
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (_) => Bienvenida(),
+                        //   ),
+                        // );
+                      }
+                    : null,
+                child: Text('ir a la otra pagina'),
+              ),
+              Image.asset('assets/${imagenes[isOpen ? 0 : 1]}'),
+            ],
+          ),
         ),
       ),
     );
