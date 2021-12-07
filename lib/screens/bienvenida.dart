@@ -13,17 +13,45 @@ class Bienvenida extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Bienvenida'),
+        centerTitle: true,
+        leading: Container(),
+      ),
       body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          // mainAxisAlignment: MainAxisAlignment.start,
-          // mainAxisSize: MainAxisSize.min,
-          children: boxes
-              .map(
-                (Color color) => Box(color),
-              )
-              .toList(),
+        child: Column(
+          children: [
+            TextButton(
+              onPressed: () {
+                print('boton apretado');
+                // Navigator.pop(context);
+                Navigator.popUntil(context, ModalRoute.withName('/'));
+              },
+              child: Text('Volver atras'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/listViewScreen');
+              },
+              child: Text('ListView'),
+            ),
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                // mainAxisAlignment: MainAxisAlignment.start,
+                // mainAxisSize: MainAxisSize.min,
+                children: boxes
+                    .map(
+                      (Color color) => Column(
+                        children: [
+                          Box(color),
+                        ],
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+          ],
         ),
       ),
     );
