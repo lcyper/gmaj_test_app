@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gmaj_test_app/screens/bienvenida.dart';
+import 'package:gmaj_test_app/screens/list_view_screen.dart';
 import 'package:gmaj_test_app/screens/new_page.dart';
 
 void main() {
@@ -11,7 +13,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: NewPage(),
+      theme: ThemeData(primarySwatch: Colors.green),
+      debugShowCheckedModeBanner: false,
+      // home: NewPage(),
+
+      initialRoute: '/', // ruta inicial por defecto
+      routes: {
+        '/': (_) => NewPage(),
+        '/bienvenida': (_) => Bienvenida(),
+        '/listViewScreen': (_) => ListViewScreen(),
+      },
     );
   }
 }
