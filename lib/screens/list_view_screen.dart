@@ -47,6 +47,7 @@ class ListViewScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ListTile(
                     title: Text(personas[index]['nombre']),
+                    // title: Text(personas[index]), // esto cuando es una lista de strings
                     subtitle: Text('${personas[index]['dni']}'),
                     trailing: const Icon(Icons.save),
                     tileColor: Colors.white,
