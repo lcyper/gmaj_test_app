@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gmaj_test_app/screens/bienvenida.dart';
+import 'package:gmaj_test_app/screens/home.dart';
 import 'package:gmaj_test_app/widgets/box.dart';
 import 'package:random_color/random_color.dart';
 
@@ -18,23 +19,33 @@ class _NewPageState extends State<NewPage> {
   List imagenes = ['januca.jpg', 'januca2.jpg'];
 
   @override
+  void initState() {
+    super.initState();
+    var nombreA = ["shelomo"];
+    List nombreB = List.from(nombreA); // referencia
+    nombreB.add('jaim');
+    print('nombreB $nombreB');
+    print('nombreA $nombreA');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () {
-              setState(() {
-                print('boton apretado');
-                number++;
-                print('Numero vale $number');
-              });
-            },
-          ),
-          SizedBox(height: 10),
+          // FloatingActionButton(
+          //   child: Icon(Icons.add),
+          //   onPressed: () {
+          //     setState(() {
+          //       print('boton apretado');
+          //       number++;
+          //       print('Numero vale $number');
+          //     });
+          //   },
+          // ),
+          // SizedBox(height: 10),
           FloatingActionButton(
             child: Icon(Icons.remove),
             onPressed: () {
@@ -72,6 +83,15 @@ class _NewPageState extends State<NewPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text('Lista de colores'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/',
+                  );
+                },
+                child: Text('ir a Home'),
               ),
               ElevatedButton(
                 onPressed: isOpen
